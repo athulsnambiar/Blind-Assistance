@@ -1,0 +1,305 @@
+\documentclass{beamer}
+\usepackage{ragged2e}
+
+\mode<presentation>
+{
+	\usetheme{Ilmenau}
+	\usecolortheme{crane}
+	\setbeamertemplate{headline}
+	
+}
+
+
+\title[Blind Assistance System]{Blind Assistance System}
+
+\subtitle{Using Facial,Emotion and Gender Recognition}
+
+\author[Alisha\and Athul\and Shamila\and Sharanya\and Sujith]{
+	Alisha Sultana\ \ (5) \\ \and
+	Athul S Nambiar\ \ (18) \\ \and 
+	Shamila Mushthaque\ \ (50) \\ \and
+	Sharanya K V\ \ (53)  \\ \and
+	Sujith C P\ \ (59)}
+	
+\institute{Govt. College of Engineering, Kannur}
+
+\date{\today}
+
+\begin{document}
+	\begin{frame}
+	\begin{flushright}
+	\textbf{Group No. 15}
+	\end{flushright}
+		\titlepage
+	
+	\end{frame}
+
+	\begin{frame}
+	
+		\title{OUTLINE}
+		\frametitle{Outline}
+		\tableofcontents
+	
+	\end{frame}
+
+		
+	\section{Abstract}
+	
+	\begin{frame}
+			
+		\frametitle{Abstract}
+		
+			\justifying
+			%\indent 
+		\begin{itemize}
+			\item Increasing dependence on AI\newline
+			\item AI unable to judge state of mind\newline
+			\item Easily trained to extract emotion \& gender info\newline
+			\item Enhanced by face recognition\newline
+		\end{itemize}
+	\end{frame}
+	
+	\section{Scope}
+	
+	\begin{frame}
+	
+		\frametitle{Scope}
+	
+		\begin{itemize}
+			\item Blind Assistance Systems\newline
+			\item Robotics\newline
+			\item Advertisements\newline
+			\item Security\newline
+			\item Medical Emergency\newline
+		\end{itemize}
+		
+	\end{frame}
+	
+	
+	\section{Introduction}
+		
+	\begin{frame}
+		
+		\frametitle{Introduction}
+		
+		\begin{itemize}
+			\item Emotion + Gender + Face Recognition \newline
+			\item Incorporate these to a Single System \newline
+			\item Various Real Life Application\newline
+			
+		\end{itemize}
+		
+	\end{frame}
+
+	\section{Motivation}
+		
+	\begin{frame}
+		
+		\frametitle{Motivation}
+		
+		\justifying
+		\indent
+		\begin{itemize}
+			\item "The face is the mirror of the mind, and eyes without speaking confess the secrets of the heart." \textit{- St. Jerome}\newline
+			\item Human Vision\newline
+			\item Computer Vision\newline
+			\item Applications\newline
+			\item Emulating Human Eye\newline
+			
+		\end{itemize}
+		
+	\end{frame}
+	
+	\section{Literature Review}
+	
+	\begin{frame}[allowframebreaks=0.9]
+		\frametitle{Literature Review}
+		
+		\begin{enumerate}[1)]
+			\item Histogram of Oriented Gradients for Human Detection\cite{dalal2005histograms}: \newline
+			\begin{itemize}
+				\item Face Detection \newline
+				\item Higher Accuracy than Haar Cascades \newline
+			\end{itemize}
+			
+			\item One Millisecond Face Alignment with an Ensemble of Regression Trees\cite{kazemi2014one}: \newline
+			\begin{itemize}
+				\item Landmark Face \newline
+				\item Correct orientation of Face \newline
+				\item Features for Emotion Detection \newline
+				
+			\end{itemize}
+			
+			\item Face description with local binary patterns: Application to face recognition \cite{ahonen2006face}\cite{face}: \newline
+			\begin{itemize}
+				\item Face Recognition \newline
+			\end{itemize}
+			
+			\item Eigenfaces vs. Fisherfaces: Recognition using class specific linear projection\cite{belhumeur1997eigenfaces}\cite{gender}: \newline
+			\begin{itemize}
+				\item Gender Classification \newline
+				\item Eigen Faces and/or Fisher Faces \newline
+				
+			\end{itemize}
+			
+			
+		\end{enumerate}		
+		
+	\end{frame}	
+	
+	
+	
+	\section{Block Diagram}
+	
+	\begin{frame}
+		
+		\frametitle{Block Diagram}
+		%\includegraphics[scale=.5]{Overview.png}
+	\end{frame}	
+	
+	\begin{frame}		
+		\frametitle{Block Diagram}
+		
+		\begin{columns}[t]
+			
+		\column{0.5\textwidth}
+		%\includegraphics[scale=.39]{EmotionClassification.png}
+		\begin{enumerate}
+			\item Cohn Kanade Dataset
+			\item Landmark Face
+			\item Get Geometric Features
+			\item Pass them To SVM
+			\item Store Classifier Function To disk
+		\end{enumerate}
+		
+		
+		\column{0.5\textwidth}
+		
+		%\includegraphics[scale=.39]{FaceRecognition.png}
+		\begin{enumerate}
+			\item Yale Face Dataset B
+			\item Compute LBP Models
+			\item Store Model to disk
+		\end{enumerate}
+		
+		\end{columns}	
+		
+	\end{frame}
+	
+	\begin{frame}
+		
+		\frametitle{Block Diagram}
+		%\includegraphics[scale=.5]{GenderClassification.png}
+		\begin{enumerate}
+			\item Yale Face Dataset B \& Cohn Kanade Dataset
+			\item Compute Eigen or Fisher Models
+			\item Store Classifier to disk
+		\end{enumerate}
+		
+		
+	\end{frame}
+	
+	
+	\section{Platform, Tools and Programming languages}
+	
+	\begin{frame}[t]
+	
+		\frametitle{Platform, Tools and Programming languages}
+				
+		\begin{itemize}
+			\begin{columns}[t]
+				\column{0.5\textwidth}
+				
+				\item Platforms :
+				\begin{enumerate}
+					\item Linux
+					\item Windows
+				\end{enumerate}			
+				
+				\item Tools :
+				\begin{enumerate}
+					\item JDK				
+					\item GCC	
+					\item Git, GitHub
+					\item Cmake, Make
+				\end{enumerate}
+			
+				\column{0.5\textwidth}
+				
+				\item Libraries :
+				\begin{enumerate}
+					\item OpenCV
+					\item dlib
+				\end{enumerate}
+				
+				\item Programming Languages:
+				\begin{enumerate}
+					\item C++ for core modules
+					\item Java for GUI
+				\end{enumerate}	
+					
+			\end{columns}
+		\end{itemize}
+	\end{frame}
+	
+	\section{Module Split-up And Gantt Chart}	
+	
+	\begin{frame}
+		
+		\frametitle{Module Split-up And Gantt Chart}		
+		\begin{columns}
+			\column{0.3\textwidth}
+			\begin{itemize}
+				\item Dataset Collection
+				\item Annotation			
+				\item Emotion Classification
+				\item Face Recogniton
+				\item Gender Classification
+				\item UI
+			\end{itemize}
+			\column{0.7\textwidth}
+				%\includegraphics[scale=.31]{gantt.png} 
+	\end{columns}
+	\end{frame}		
+	
+	\section{Expected Outcomes}
+		
+	\begin{frame}
+		\frametitle{Expected outcomes}
+		\justifying
+		On successful completion of this project, we will be able to:
+		\begin{itemize}
+			\item Acquire skills in machine learning and image processing.
+			\item Acquire professional skills in software development and management.
+			\item Improve interaction skills.
+			\item Achieve leadership quality.
+			\item Understand social relevance of software projects
+		\end{itemize}
+		
+	\end{frame}
+		
+	\section{Conclusions}
+	
+	\begin{frame}
+		\frametitle{Conclusions}
+		
+		\begin{itemize}
+			
+		\item We integrate Emotion, Gender detection and Face Recognition
+		\item Wide range of applications
+			
+		\end{itemize}
+		 
+	\end{frame}		
+	
+	\section{References}
+	
+	\begin{frame}[allowframebreaks]
+		\frametitle{References}
+		\footnotesize{
+			\setbeamertemplate{bibliography item}[text]
+			\bibliographystyle{unsrt}
+			\bibliography{references}}
+	\end{frame}
+		
+\end{document}
