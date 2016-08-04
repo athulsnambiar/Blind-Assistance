@@ -27,3 +27,15 @@
 *.exe
 *.out
 *.app
+
+# Backup
+*~
+
+# Latex And Beamer
+*.aux
+*.log
+*.nav
+*.pdf
+*.snm
+*.synctex.gz
+*.toc
