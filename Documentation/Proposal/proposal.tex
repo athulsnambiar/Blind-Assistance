@@ -44,7 +44,7 @@
 		\item {\bfseries Title Of The Project :}\newline
 		
 		\begin{center}
-			\textbf{BLIND ASSISTANCE SYSTEM}\newline
+			\textbf{BLIND ASSISTANCE SYSTEM}\hspace{20em}
 			\textbf{Using Facial, Emotion \& Gender Recognition}
 		\end{center}
 
@@ -88,19 +88,38 @@
 		
 		\item {\bfseries Project Schedule : }
 		
-			\begin{ganttchart}{1}{24}
+%			\begin{ganttchart}
+%				[hgrid,
+%				vgrid={*{6}{draw=none},dotted},,
+%				time slot format = isodate,
+%				x unit=0.12cm]{2016-07-22}{2016-10-25}
+				
+%				\gantttitlecalendar{month = name,day} \\
+				
+%				\ganttbar[bar/.append style={fill=blue}]{Dataset Collection}{2016-7-22}{2016-8-14} \\
+%				\ganttbar[bar/.append style={fill=blue}]{Planning}{2016-7-22}{2016-8-14} \\
+%				\ganttbar[bar/.append style={fill=blue}]{Development}{2016-8-15}{2016-9-15} \\
+%				\ganttbar[bar/.append style={fill=blue}]{Testing}{2016-9-15}{2016-10-25} \\
+%				\ganttbar[bar/.append style={fill=blue}]{Documentation}{2016-9-15}{2016-10-25}
+				
+%			\end{ganttchart}
+		
+		
+		
+			\begin{ganttchart}[hgrid,vgrid]{1}{24}
 				\gantttitle{Project Schedule}{24} \\
-			
 				\gantttitle{July 22 - Aug 14}{8}
 				\gantttitle{Aug 15 - Sept 15}{8}
 				\gantttitle{Sept 15 - Oct 25}{8}\\
 				
-				\ganttbar{Dataset Collection}{1}{8} \\
-				\ganttbar{Planning}{1}{8} \\
-				\ganttbar{Development}{9}{16} \\
-				\ganttbar{Testing}{17}{24} \\
-				\ganttbar{Documentation}{17}{24}
-			\end{ganttchart}
+				\ganttbar[bar/.append style={fill=blue}]{Dataset Collection}{1}{8} \\
+				\ganttbar[bar/.append style={fill=blue}]{Planning}{1}{8} \\
+				\ganttbar[bar/.append style={fill=blue}]{Development}{9}{16} \\
+				\ganttbar[bar/.append style={fill=blue}]{Testing}{17}{24} \\
+				\ganttbar[bar/.append style={fill=blue}]{Documentation}{17}{24}
+				
+			\end{ganttchart}	
+					
 		
 		\item {\bfseries References : }
 			\bibliographystyle{unsrt}
@@ -111,9 +130,58 @@
 			\nocite{face}
 			\nocite{gender}
 			\bibliography{references}
-			
+	\end{enumerate}	
+		\clearpage
+		\pagenumbering{gobble}
+		\begin{center}
+			{\Large \textbf{Declaration by Group Members} }
+		\end{center}
+		
+		\paragraph{} This proposal is submitted in partial fulfilment of the requirements for the B-Tech degree programme and we agree to complete the mini project work in accordance with the rules and regulations of the department.
+		
+		\paragraph{} Signature of members:
+		
+		\begin{enumerate}
+			\item Alisha Sultana Aliyar Rawther
+			\item Athul S Nambiar
+			\item Shamila Mushthaque
+			\item Sharanya K V
+			\item Sujith C P \newline
+		\end{enumerate}
 
-	\end{enumerate}
+
+		\begin{center}
+			{\Large \textbf{Declaration by Project Guide} }
+		\end{center}
+		\paragraph{} This proposal has been submitted with my approval as the project guide and I am ready to guide the project work.\newline
+		
+		\textbf{Place : } GCE Kannur \hfill		\textbf{Name of the Guide:} ASJAD NABEEL P
+		\newline
+		\newline
+		\textbf{Date  : }\today \hspace{7.5em} \textbf{Signature : }
+		\newline
+		\newline
+		\newline
+		
+		\begin{center}
+			{\Large \textbf{For Department Use Only\hspace{7em} Approved/Returned For Resubmission} }
+			\newline
+			\newline
+			\newline
+		\end{center}
+
+		
+		\textbf{Signature} \hspace{10em}
+		\textbf{Signature} \hspace{10em}
+		\textbf{Signature}
+		\newline
+		\textbf{(Member)} \hspace{9.6em}
+		\textbf{(Member)} \hspace{10.5em}
+		\textbf{(HOD)}
+
+		
+		
+
 \end{flushleft}
 
 \end{document}
