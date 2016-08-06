@@ -1,13 +1,21 @@
 \documentclass[12pt,a4paper]{article}
 \usepackage[top=1in, bottom=1.25in, left=1.25cm, right=1.25cm]{geometry}
+%for vertically center the text in table box
 \usepackage{array}
+%for properly displaying urls in references
 \usepackage{url}
+%for gantt chart
+\usepackage{pgfgantt}
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
+
 \begin{document}
 
 \title{Blind Assistance System}
 \date{\today}
 \author{Athul S Nambiar}
 
+\pagenumbering{roman}
 \center{}
 \large{\textbf {GOVT. CCOLLEGE OF ENGINEERING, KANNUR}}
 \newline
@@ -75,6 +83,25 @@
 		
 		\item {\bfseries Expected Expenditure, If Any : } No
 		
+		
+		\clearpage
+		
+		\item {\bfseries Project Schedule : }
+		
+			\begin{ganttchart}{1}{24}
+				\gantttitle{Project Schedule}{24} \\
+			
+				\gantttitle{July 22 - Aug 14}{8}
+				\gantttitle{Aug 15 - Sept 15}{8}
+				\gantttitle{Sept 15 - Oct 25}{8}\\
+				
+				\ganttbar{Dataset Collection}{1}{8} \\
+				\ganttbar{Planning}{1}{8} \\
+				\ganttbar{Development}{9}{16} \\
+				\ganttbar{Testing}{17}{24} \\
+				\ganttbar{Documentation}{17}{24}
+			\end{ganttchart}
+		
 		\item {\bfseries References : }
 			\bibliographystyle{unsrt}
 			\nocite{kazemi2014one}
@@ -83,8 +110,9 @@
 			\nocite{ahonen2006face}
 			\nocite{face}
 			\nocite{gender}
-			\bibliography{references}			
-		
+			\bibliography{references}
+			
+
 	\end{enumerate}
 \end{flushleft}
 
