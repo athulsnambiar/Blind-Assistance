@@ -8,7 +8,7 @@ using namespace dlib;
 using namespace std;
 using namespace cv;
 
-Mat detect_face(Mat image)
+Mat detect_face(Mat image, frontal_face_detector detector)
 {  
 	Mat face(image);
 	
@@ -18,7 +18,7 @@ Mat detect_face(Mat image)
 
 		//pyramid_up(cimg);
 
-		frontal_face_detector detector = get_frontal_face_detector();
+		
 		
 		std::vector<dlib::rectangle> dets = detector(cimg);
 				

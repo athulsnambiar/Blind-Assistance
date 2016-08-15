@@ -8,6 +8,8 @@ int main(int argc, char** argv)
 	VideoCapture cap;
 	//opencv image datatype
 	Mat frame;
+	//dlib face detection object
+	frontal_face_detector detector = get_frontal_face_detector();
 	//open video by name
 	cap.open(argv[1]);
 	//check if video is opened
@@ -26,7 +28,7 @@ int main(int argc, char** argv)
 			break;
 		
 		//get face marked image
-		frame = detect_face(frame);
+		frame = detect_face(frame,detector);
 		
 		//display frame on video
 		imshow("edges", frame);
