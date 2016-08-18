@@ -37,3 +37,24 @@ Mat detect_face(Mat image, frontal_face_detector detector)
 	return face;
 }
 
+
+std::vector<dlib::rectangle> detect_face_rectangles(Mat image, frontal_face_detector detector)
+{  
+	std::vector<dlib::rectangle> dets;
+	try
+	{
+		cv_image<bgr_pixel> cimg(image);
+
+		//pyramid_up(cimg);
+
+		dets = detector(cimg);
+				
+	}
+	catch (exception& e)
+	{
+		cout << "\nexception thrown!" << endl;
+		cout << e.what() << endl;
+	}
+
+	return dets;
+}
