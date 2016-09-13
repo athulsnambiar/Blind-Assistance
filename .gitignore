@@ -42,8 +42,9 @@
 *.bbl
 *.blg
 
-# Videos
+# Videos & Images
 *.webm
+*.jpg
 
 #Cmake
 CMakeCache.txt
