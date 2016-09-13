@@ -39,6 +39,8 @@
 *.snm
 *.synctex.gz
 *.toc
+*.bbl
+*.blg
 
 # Videos
 *.webm
