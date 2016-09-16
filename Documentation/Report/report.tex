@@ -19,14 +19,28 @@
 \pagenumbering{gobble}
 \input{frontmatter.tex}
 \clearpage
-\end{document}
-% Acknowledgements, abstract and publications
-%\pagenumbering{roman}
-%\pagestyle{plain}
-%\chapter*{Acknowledgements}
-%\input{sectionAcknowledgements.tex}
-%\addcontentsline{toc}{chapter}{Acknowledgements}
 
-%\chapter*{Abstract}
-%\input{sectionAbstract.tex}
-%\addcontentsline{toc}{chapter}{Abstract}
+% Acknowledgements, abstract and publications
+\pagenumbering{roman}
+\pagestyle{plain}
+\chapter*{Acknowledgements}
+\input{sectionAcknowledgements.tex}
+\addcontentsline{toc}{chapter}{Acknowledgements}
+
+\chapter*{Abstract}
+\input{sectionAbstract.tex}
+\addcontentsline{toc}{chapter}{Abstract}
+
+
+\tableofcontents
+\thispagestyle{empty}
+\clearpage 
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+\thispagestyle{empty}
+\clearpage
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
+\thispagestyle{empty}
+\clearpage 
+\end{document}
