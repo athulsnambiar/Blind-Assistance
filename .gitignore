@@ -41,6 +41,8 @@
 *.toc
 *.bbl
 *.blg
+*.lot
+*.lof
 
 # Videos & Images
 *.webm
