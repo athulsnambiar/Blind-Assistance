@@ -20,27 +20,33 @@
 \input{frontmatter.tex}
 \clearpage
 
-% Acknowledgements, abstract and publications
-\pagenumbering{roman}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Acknowledgements
 \pagestyle{plain}
+\pagenumbering{roman}
+
+\addtocontents{toc}{\protect\setcounter{tocdepth}{3}}
 \chapter*{Acknowledgements}
 \input{sectionAcknowledgements.tex}
 \addcontentsline{toc}{chapter}{Acknowledgements}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Abstract
 \chapter*{Abstract}
+\pagestyle{plain}
 \input{sectionAbstract.tex}
 \addcontentsline{toc}{chapter}{Abstract}
 
 
 \tableofcontents
-\thispagestyle{empty}
+\thispagestyle{plain}
 \clearpage 
 \addcontentsline{toc}{chapter}{\listfigurename}
 \listoffigures
-\thispagestyle{empty}
+\thispagestyle{plain}
 \clearpage
 \addcontentsline{toc}{chapter}{\listtablename}
 \listoftables
-\thispagestyle{empty}
+\thispagestyle{plain}
 \clearpage 
 \end{document}
