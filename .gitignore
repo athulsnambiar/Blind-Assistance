@@ -47,6 +47,7 @@
 # Videos & Images
 *.webm
 *.jpg
+*.png
 
 #Cmake
 CMakeCache.txt
