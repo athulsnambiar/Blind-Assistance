@@ -1,0 +1,50 @@
+\paragraph{}This chapter provides an insight and literature review to the latest algorithms used in our project. It also highlights various methods used by the researchers in this field.
+
+\section{Face Detection}
+\paragraph{}Face detection can be regarded as a specific case of object-class detection. In object-class detection, the task is to find the locations and sizes of all objects in an image that belong to a given class. Examples include upper torsos, pedestrians, and cars.
+ 
+\paragraph{} There are 2 popular methods for face detection.
+\begin{enumerate}
+	\item Haar Cascades.
+	\item Histogram of Oriented Gradients
+\end{enumerate}  
+	\subsection{Haar Cascades}
+	
+	\paragraph{}Object Detection using Haar feature-based cascade classifiers is an effective object detection method proposed by Paul Viola and Michael Jones in their paper, "Rapid Object Detection using a Boosted Cascade of Simple Features" in 2001. It is a machine learning based approach where a cascade function is trained from a lot of positive and negative images. It is then used to detect objects in other images.
+	
+	\paragraph{}Here we use it for face detection. Initially, the algorithm needs a lot of positive images (images of faces) and negative images (images without faces) to train the classifier. Then we need to extract features from it. For this, haar features shown in below image are used. They are just like our convolutional kernel. Each feature is a single value obtained by subtracting the sum of pixels under white rectangle from the sum of pixels under black rectangle.
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=1\textwidth]{Chapter2/haar01.png}
+			\caption{Haar\textendash Like Features}
+			\label{fig:haarfeatures}
+		\end{center}
+	\end{figure}
+
+	\paragraph{}Now all possible sizes and locations of each kernel are used to calculate plenty of features. It needs a huge amount of computation, even a 24x24 window results over 160000 features. For each feature calculation, the sum of pixels under white and black rectangles is required. This can be solved by \textbf{Integral Images/Summed Area Table} . It simplifies calculation of the sum of pixels, how large may be the number of pixels, to an operation involving just four pixels. It makes things super-fast.
+	
+	\paragraph{}But among all these features that are calculated, most of them are irrelevant. For example, consider the image below. Top row shows two good features. The first
+	feature selected seems to focus on the property that the region of the eyes is often darker than the region of the nose and cheeks. The second feature
+	selected relies on the property that the eyes are darker than the bridge of the nose. But the same windows applying on cheeks or any other place is irrelevant.
+	Accepting only relevant features is achieved by \textbf{Adaptive Boosting}.
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=1\textwidth]{Chapter2/haar02.png}
+			\caption{Haar Features on a Image}
+			\label{fig:haarfeaturesonimage}
+		\end{center}
+	\end{figure}
+	
+	\paragraph{}For this, each and every feature is applied on all the training images. For each feature, the best threshold to classify the face to positive and negative is identified. There are chances of errors or misclassifications. Then features with minimum error rate are selected, i.e. features that best classify the face and non-face images ( The overall process is more complicated than this. All training images are given equal weights in the beginning. After each classification, weights of misclassified images are increased. Then again the same process is repeated. New error rates are calculated. Also new weights. The process is continued until required accuracy or error rate is achieved or required number of features are found).
+	
+	\paragraph{}Now assume the around 6000 features are used for classification. Then in an image, a 24x24 window is tested using these 6000 features. It becomes very inefficient and time-consuming to check all feature on every 24x24 window. If possible, determining whether a region is a face region or not using a simple check will increase the algorithm efficiency remarkably.
+	
+	\paragraph{}\textbf{Cascade of Classifiers} can be used to improve efficiency. Features are divided into many stages, with lower stages having a smaller number of features. An image is passed to next stage only if it clears all previous stages, and if an image fails the first stage discard it. An image is considered a positive match if and only if it passes all stages. Authors' Haar cascade classifier had 38 stages with starting five stages containing 1, 10, 25, 25, 50 features
+	
+\section{Face Landmarking}
+
+\section{Face Recognition}
+
+\section{SVM}
