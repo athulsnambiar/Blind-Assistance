@@ -41,7 +41,65 @@
 	
 	\paragraph{}Now assume the around 6000 features are used for classification. Then in an image, a 24x24 window is tested using these 6000 features. It becomes very inefficient and time-consuming to check all feature on every 24x24 window. If possible, determining whether a region is a face region or not using a simple check will increase the algorithm efficiency remarkably.
 	
-	\paragraph{}\textbf{Cascade of Classifiers} can be used to improve efficiency. Features are divided into many stages, with lower stages having a smaller number of features. An image is passed to next stage only if it clears all previous stages, and if an image fails the first stage discard it. An image is considered a positive match if and only if it passes all stages. Authors' Haar cascade classifier had 38 stages with starting five stages containing 1, 10, 25, 25, 50 features
+	\paragraph{}\textbf{Cascade of Classifiers} can be used to improve efficiency. Features are divided into many stages, with lower stages having a smaller number of features. An image is passed to next stage only if it clears all previous stages, and if an image fails the first stage discard it. An image is considered a positive match if and only if it passes all stages. Authors' Haar cascade classifier had 38 stages with starting five stages containing 1, 10, 25, 25, 50 features.
+	
+	
+	\subsection{Histogram of Oriented Gradients}
+	
+	\paragraph{}One of the most popular and successful "object detectors" out there right now is the HOG with SVM approach. HOG stands for Histograms of Oriented Gradients. HOG is a type of "feature descriptor". The intent of a feature descriptor is to generalise the object in such a way that the same object (in this case a person) produces as close as possible to the same feature descriptor when viewed under different conditions. This makes the classification task easier.
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=1\textwidth]{Chapter2/hog01.png}
+			\caption{Histogram of Oriented Gradients}
+			\label{fig:hog}
+		\end{center}
+	\end{figure}
+	
+	\paragraph{}HOG was first introduced by, Navneet Dalal and Bill Triggs, at the 2005 Conference on Computer Vision and Pattern Recognition. They originally used this technique for human detection. The HOG person detector is fairly simple to implement compared to other object recognition techniques such as SIFT(Scale-Invariant Feature Transform). One of the main reasons for this is that it uses a “global” feature to describe a person rather than a collection of “local” features i.e. this means that the entire object is represented by a single feature vector, as opposed to many feature vectors representing smaller parts of that object.
+	
+	\paragraph{}The HOG object detector uses a sliding detection window which is moved around the image. At each position of the detector window, a HOG descriptor is computed for the detection window. This descriptor is then shown to the trained SVM, which classifies it as either "object" or "not object".To recognise objects at different scales, the image is subsampled to multiple sizes. Each of these subsampled images is searched.
+	
+		\subsubsection{Gradient computation}
+		\paragraph{}The first step of calculation in many feature detectors in image pre-processing is to ensure normalised colour and gamma values. But Dalal and Triggs point out, however, this step can be omitted in HOG descriptor computation, as the ensuing descriptor normalisation essentially achieves the same result. Image pre-processing thus provides a little impact on performance. Instead, the first step of calculation is the computation of the gradient values. The most common method is to apply the 1-D centred, point discrete derivative mask in one or both of the horizontal and vertical directions. Specifically, this method requires filtering the colour or intensity data of the image with the following filter kernels:
+				
+		$\begin{bmatrix} -1 & 0 & 1 \end{bmatrix}$ and $\begin{bmatrix} -1 & 0 & 1 \end{bmatrix}^{T}$
+		
+		\paragraph{}Dalal and Triggs tested other, more complex masks, such as the 3x3 Sobel mask or diagonal masks, but these masks generally performed more poorly in detecting humans in images. They also experimented with Gaussian smoothing before applying the derivative mask, but similarly found that omission of any smoothing performed better in practice.
+		
+		\subsubsection{Orientation binning}
+		\paragraph{}The second step of calculation is creating the cell histograms. Each pixel within the cell casts a weighted vote for an orientation-based histogram channel based on the values found in the gradient computation. The cells themselves can either be rectangular or radial in shape, and the histogram channels are evenly spread over 0 to 180 degrees or 0 to 360 degrees, depending on whether the gradient is "unsigned" or "signed". Dalal and Triggs found that unsigned gradients used in conjunction with 9 histogram channels performed best in their human detection experiments. As for the vote weight, pixel contribution can either be the gradient magnitude itself, or some function of the magnitude. In tests, the gradient magnitude itself generally produces the best results. Other options for the vote weight could include the square root or square of the gradient magnitude or some clipped version of the magnitude.
+		
+		\subsubsection{Descriptor blocks}
+		
+		\begin{figure}[h]
+			\begin{center}
+				\includegraphics[width=1\textwidth]{Chapter2/hog02.png}
+				\caption{HOG Blocks Overlapping}
+				\label{fig:hogblocks}
+			\end{center}
+		\end{figure}
+		
+		\paragraph{}To account for changes in illumination and contrast, the gradient strengths must be locally normalised, which requires grouping the cells together into larger, spatially connected blocks. The HOG descriptor is then the concatenated vector of the components of the normalised cell histograms from all of the block regions. These blocks typically overlap, meaning that each cell contributes more than once to the final descriptor. Two main block geometries exist, rectangular R-HOG blocks and circular C-HOG blocks. R-HOG blocks are generally square grids, represented by three parameters: the number of cells per block, the number of pixels per cell, and the number of channels per cell histogram. In the Dalal and Triggs human detection experiment, the optimal parameters were found to be four 8x8 pixels cells per block with 9 histogram channels. Moreover, they found that some minor improvement in performance could be gained by applying a Gaussian spatial window within each block before tabulating histogram votes in order to weight pixels around the edge of the blocks less. The R-HOG blocks appear quite similar to the scale-invariant feature transform (SIFT) descriptors; however, despite their similar formation, R-HOG blocks are computed in dense grids at some single scale without orientation alignment, whereas SIFT descriptors are usually computed at sparse, scale-invariant key image points and are rotated to align orientation. In addition, the R-HOG blocks are used in conjunction to encode spatial form information, while SIFT descriptors are used singly.
+		
+		\subsubsection{Block Normalisation}
+		\paragraph{}Dalal and Triggs explored four different methods for block normalization. Let ${\displaystyle v}$ be the non-normalized vector containing all histograms in a given block, $\|{\displaystyle v}\|_{k}$ be its ${\displaystyle k}$-norm where ${\displaystyle k={1,2}}$ and ${\displaystyle e}$ be some small constant. Then the normalization factor can be one of the following:
+		
+		L2-norm: ${\displaystyle f={v \over {\sqrt {\|v\|_{2}^{2}+e^{2}}}}}$
+		
+		L2-hys: L2-norm followed by clipping (limiting the maximum values of v to 0.2) and renormalizing
+		
+		L1-norm: ${\displaystyle f={v \over (\|v\|_{1}+e)}}$
+		
+		L1-sqrt: ${\displaystyle f={\sqrt {v \over (\|v\|_{1}+e)}}}$
+		
+		\paragraph{}In their experiments, Dalal and Triggs found the L2-hys, L2-norm, and L1-sqrt schemes provide similar performance, while the L1-norm provides slightly less reliable performance; however, all four methods showed very significant improvement over the non-normalized data.
+		
+		\subsubsection{SVM classifier}
+		\paragraph{}The final step in object recognition using the histogram of oriented Gradient descriptors is to feed the descriptors into some recognition system based on supervised learning. The support vector machine (SVM) classifier is a binary classifier which looks for an optimal hyperplane as a decision function. Once trained on images containing some particular object, the SVM classifier can make decisions regarding the presence of an object, such as a human, in additional test images.
+		
+		\subsubsection{Neural Network Classifier}
+		\paragraph{}The features of the gradient descriptors can also be fed into the neural network classifiers which provides more accuracy in the classification comparing other classifiers (Linear-SVM). The neural classifiers can accept the descriptor feature as the binary function or the optimal function.
 	
 \section{Face Landmarking}
 
